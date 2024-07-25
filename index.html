@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lottie Animation Loop</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.13/lottie.min.js"></script>
+</head>
+<body>
+    <div id="animation" style="width: 500px; height: 500px;"></div>
+    <script>
+        
+        const animation = lottie.loadAnimation({
+            container: document.getElementById('animation'),
+            path: 'anim.json',
+            renderer: 'svg',
+            loop: true,
+            autoplay: false
+        });
+
+        animation.addEventListener('DOMLoaded', () => {   
+            animation.playSegments([0, 80], true);        
+            setTimeout(() => {
+                loop();
+            }, 2000);
+        });
+
+        function loop() {
+            animation.playSegments([80, 120], true);
+        }
+
+        function endAnime() {
+        animation.playSegments([120, 160], true);
+        setTimeout(() => {
+            animation.destroy();
+        }, 1000);
+    }
+
+    </script>
+    <button id="finish" onclick="endAnime()">
+        FInish
+    </button>
+</body>
+</html>
